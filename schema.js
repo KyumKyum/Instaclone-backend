@@ -1,7 +1,6 @@
 import { makeExecutableSchema } from "@graphql-tools/schema"
 import { loadFilesSync } from "@graphql-tools/load-files"
 import { mergeTypeDefs, mergeResolvers } from "@graphql-tools/merge"
-import { gql } from "apollo-server"
 //Uses Patters language.
 /*
 ** : Inside of every folders
