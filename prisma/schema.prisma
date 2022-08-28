@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Movie {
+  id Int @default(autoincrement()) @id //Tell DB this si the id of the model
+  title String 
+  year Int
+  genre String? //Not required field
+  createdAt DateTime @default(now()) //Automatically stores the time when the model is being created.
+  //Datetime: Type included in Prisma
+  updatedAt DateTime @updatedAt //Automatically stores the time when a record was last updated
+}
+

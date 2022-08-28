@@ -12,6 +12,7 @@ import {ApolloServer, gql} from "apollo-server";
 //Defines what kind of field the client going to query about.
 const typeDefs = gql`
     type Movie{
+        id: Int
         title: String
         year: Int
     }
