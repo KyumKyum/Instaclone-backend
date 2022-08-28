@@ -24,6 +24,7 @@
     "@graphql-tools/schema": "^8.5.1",
     "@prisma/client": "^4.2.1",
     "apollo-server": "^3.10.1",
+    "dotenv": "^16.0.1",
     "graphql": "^16.6.0",
     "graphql-tools": "^8.3.4"
   },
