@@ -25,3 +25,13 @@ export const getUser = async (token) => {
         return null; //Error we don;t catch
     }
 };
+
+export const protectResolver = (ourResolver) => (root, args, context, info) => {
+    if(!context.loggedInUser){
+        return {
+            ok: false,
+            error:"The User is not logged in: Please log in to perform this action."
+        };
+    }
+    return ourResolver(root, args, context, info); //First Argument: receieved resolver.
+}
