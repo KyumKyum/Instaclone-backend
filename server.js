@@ -12,10 +12,20 @@ require('dotenv').config()
 //const {ApolloServer, gql} = require("apollo-server")
 import {ApolloServer} from "apollo-server";
 import schema from "./schema";
+import { getUser } from "./users/users.utils"
+
 
 const PORT = process.env.PORT;
 //create server 
-const server= new ApolloServer({schema});
+const server= new ApolloServer({
+    schema,
+    context: async ({ req }) => {
+        //console.log("auth header from request: " + req.headers)
+        return { 
+            loggedInUser: await getUser(req.headers.authorization)
+        }
+    }
+});
 
 server
     .listen(PORT)

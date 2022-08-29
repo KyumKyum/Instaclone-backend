@@ -22,6 +22,7 @@ export default {
             }
             //if ok, issue(sign) a token and send it to the user
             const token = await jwt.sign({id:user.id}, process.env.PRIVATE_KEY);
+            //console.log("Signed Token: " + token);
 
             return { 
                 ok: true,
