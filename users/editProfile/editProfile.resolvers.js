@@ -2,7 +2,11 @@ import bcrypt from "bcrypt"
 import { protectResolver } from "../users.utils"
 import client from "../../client"
 
+//import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs"
+
 export default {
+    //Upload: GraphQLUpload,
+
     Mutation: {
         editProfile: protectResolver(
             async (_,{
@@ -11,6 +15,7 @@ export default {
                 userName,
                 email,
                 password:pwd,
+                bio
             },
             { loggedInUser, protectResolver }
             ) => {
@@ -30,6 +35,7 @@ export default {
                         lastName,
                         userName,
                         email,
+                        bio,
                         ...(hashedPassword && {password:hashedPassword}) // ...(condition &&{Return this object if the condition is true}) 
                     }
                 });

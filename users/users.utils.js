@@ -26,8 +26,8 @@ export const getUser = async (token) => {
     }
 };
 
-export const protectResolver = (ourResolver) => (root, args, context, info) => {
-    if(!context.loggedInUser){
+export const protectResolver = (ourResolver) => (root, args, context, info) => { //Arguments of the returning function will be filled by the server automatically when the request comes.
+    if(!context.loggedInUser){ //returns function that server will call
         return {
             ok: false,
             error:"The User is not logged in: Please log in to perform this action."
