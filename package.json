@@ -33,6 +33,7 @@
     "graphql-tools": "^8.3.4",
     "graphql-upload": "^13.0.0",
     "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
     "nvm": "^0.0.4",
     "stream": "^0.0.2"
   },

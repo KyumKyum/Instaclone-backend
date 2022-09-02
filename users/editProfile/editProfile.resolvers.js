@@ -23,20 +23,27 @@ export default {
             ) => {
                 //console.log(loggedInUser)
                 //console.log("Decrypted - id: " + id 
-                
-                const { file } = await avatar;
-                //console.log("Received: \n " + JSON.stringify(file));
-                //console.log(file.filename);
-                //console.log(file.createReadStream);
-                //console.log(filename,createReadStream);
+                let avatarURL = null;
 
-                const readStream = file.createReadStream(); //get all the stream data. (file stream)
-                const writestream = fs.createWriteStream(process.cwd() + "/files/" + file.filename);
-                readStream.pipe(writestream);
-                //Send read stream data to write stream, and the write stream writes the data to assigned path.
-                //console.log(stream)
+                if(avatar){
+                    const { file } = await avatar;
+                    const filename = `${loggedInUser.id}-${Date.now()}-${file.filename}`
+                    //console.log("Received: \n " + JSON.stringify(file));
+                    //console.log(file.filename);
+                    //console.log(file.createReadStream);
+                    //console.log(filename,createReadStream);
+
+                    const readStream = file.createReadStream(); //get all the stream data. (file stream)
+                    const writestream = fs.createWriteStream(process.cwd() + "/files/" + filename); 
+                    readStream.pipe(writestream);
+                    //Send read stream data to write stream, and the write stream writes the data to assigned path.
+                    //console.log(stream)
+
+                    avatarURL = `http://localhost:4000/static/${filename}`;
+                }
 
                 let hashedPassword = null;
+
                 if(pwd){
                     hashedPassword = await bcrypt.hash(pwd, 10);
                 }
@@ -50,7 +57,8 @@ export default {
                         userName,
                         email,
                         bio,
-                        ...(hashedPassword && {password:hashedPassword}) // ...(condition &&{Return this object if the condition is true}) 
+                        ...(hashedPassword && {password:hashedPassword}), // ...(condition &&{Return this object if the condition is true}) 
+                        ...(avatarURL && {avatar: avatarURL}) // ...(condition &&{Return this object if the condition is})
                     }
                 });
                 if (updatedUser.id) {

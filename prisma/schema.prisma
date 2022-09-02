@@ -16,6 +16,8 @@ model User {
   password String
   bio String?
   avatar String? //Save Images by url (Raw images in hard drive)
+  followers User[] @relation(name:"FollowRelation")
+  following User[] @relation(name:"FollowRelation")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
