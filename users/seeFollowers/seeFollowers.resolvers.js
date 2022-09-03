@@ -2,6 +2,7 @@ import client from "../../client"
 
 const PAGE = parseInt(process.env.PAGE_SIZE);
 
+//Based on Offset Pagination
 export default {
     Query: {
         seeFollowers: async(_, //Not protecting resolvers: it is public.
