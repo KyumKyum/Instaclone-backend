@@ -14,9 +14,9 @@
 - [X] SEE PROFILE
 
 - Photos
-- [ ] TODO
-- [ ] TODO
-- [ ] TODO
+- [X] SET PHOTO MODEL
+- [ ] UPLOAD PHOTO
+- [ ] PARSE AND SEE HASHTAGS
 - [ ] TODO
 - [ ] TODO
 - [ ] TODO

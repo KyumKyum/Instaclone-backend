@@ -16,8 +16,29 @@ model User {
   password String
   bio String?
   avatar String? //Save Images by url (Raw images in hard drive)
+  photos Photo[] // Represents 1:N Relationship with Photo Model
   followers User[] @relation(name:"FollowRelation")
   following User[] @relation(name:"FollowRelation")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Photo {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id]) //Represents 1:N Relationship with Photo Model
+  file String
+  caption String?
+  hashtags Hashtag[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Hashtag {
+  id Int @id @default(autoincrement())
+  hashtag String @unique
+  photos Photo[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
